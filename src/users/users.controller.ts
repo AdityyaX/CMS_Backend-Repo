@@ -9,6 +9,13 @@ export class UsersController {
 
   @Post('register')
   async registerUser(@Body() user: User): Promise<User> {
+    console.log('registerUser', user);
+    
     return this.usersService.registerUser(user);
+  }
+
+  @Post('login')
+  async loginUser(@Body() credentials: { email: string; password: string }) {
+    return this.usersService.loginUser(credentials);
   }
 }

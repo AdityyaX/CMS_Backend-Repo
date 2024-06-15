@@ -1,3 +1,4 @@
+// user.model.ts
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
@@ -5,8 +6,8 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-  @Prop({ required: true })
-  name: string;
+  @Prop({ required: true, unique: true })
+  username: string;
 
   @Prop({ required: true, unique: true })
   email: string;
@@ -14,8 +15,7 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  // Add more fields as needed for your application
-
+  // Add any other user data fields as needed
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
